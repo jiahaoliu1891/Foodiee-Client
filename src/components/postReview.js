@@ -6,12 +6,6 @@ import { Redirect } from 'react-router'
 import Box from '@material-ui/core/Box';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-const env = {
-    cloudinary_cloud_name: 'shawn1891',
-    cloudinary_url: "https://api.cloudinary.com/v1_1/shawn1891/image/upload",
-    cloudinary_upload_preset: "foodiee"
-}
-
 class PostReview extends Component {
     constructor(prop) {
         super(prop)
@@ -37,14 +31,14 @@ class PostReview extends Component {
         // Upload image to cloudinary
         if (this.state.selectedFile != null) {
             const imageData = new FormData();
-            imageData.append("cloud_name", env.cloudinary_cloud_name)
+            imageData.append("cloud_name", process.env.REACT_APP_CLOUDINARY_NAME)
             // Post Image to cloudinary
             const files = this.state.selectedFile;
             for (let i = 0; i < files.length; i++) {
                 let file = files[i];
                 imageData.append("file", file);
-                imageData.append("upload_preset", env.cloudinary_upload_preset);
-                const response = await fetch(env.cloudinary_url, { method: "POST", body: imageData });
+                imageData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_UPLOAD_PREST);
+                const response = await fetch(process.env.REACT_APP_CLOUDINARY_URL, { method: "POST", body: imageData });
                 const data = await response.json();
                 this.setState({
                     imageUrls: [...this.state.imageUrls, data.url]

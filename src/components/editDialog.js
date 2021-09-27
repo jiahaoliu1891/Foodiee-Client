@@ -9,12 +9,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from "@material-ui/core/IconButton";
 
-const env = {
-    cloudinary_cloud_name: 'shawn1891',
-    cloudinary_url: "https://api.cloudinary.com/v1_1/shawn1891/image/upload",
-    cloudinary_upload_preset: "foodiee"
-}
-
 export default function EditDialog(props) {
     const [open, setOpen] = React.useState(false);
     const [images, setImages] = React.useState(null);
@@ -69,13 +63,13 @@ export default function EditDialog(props) {
         
         if (images != null) {
             const imageData = new FormData();
-            imageData.append("cloud_name", env.cloudinary_cloud_name)
+            imageData.append("cloud_name", process.env.REACT_APP_CLOUDINARY_NAME)
             // Post Image to cloudinary
             for (let i = 0; i < images.length; i++) {
                 let img = images[i];
                 imageData.append("file", img);
-                imageData.append("upload_preset", env.cloudinary_upload_preset);
-                const res = await fetch(env.cloudinary_url, { method: "POST", body: imageData });
+                imageData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_UPLOAD_PREST);
+                const res = await fetch(process.env.REACT_APP_CLOUDINARY_URL, { method: "POST", body: imageData });
                 if (!res.ok) {
                     console.log(res)
                     return
@@ -121,14 +115,12 @@ export default function EditDialog(props) {
 
     return (
         <>
-
             <IconButton className={props.iconClass} onClick={handleClickOpen}>
                 <EditIcon />
             </IconButton>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Edit Your Poster</DialogTitle>
                 <DialogContent>
-
                     <TextField
                         autoFocus
                         margin="dense"
@@ -185,9 +177,6 @@ export default function EditDialog(props) {
                         Submit
                     </Button>
                 </DialogActions>
-
-
-
             </Dialog>
         </>
     );
