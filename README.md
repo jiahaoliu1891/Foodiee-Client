@@ -1,5 +1,6 @@
 # Foodiee-Client
 [Foodiee](https://foodiee.online/), a online restaurant review platform.
+
 Built with:
 * React
 * Material-UI
@@ -7,6 +8,7 @@ Built with:
 * Cloundinary
 * Node.js
 * Express
+
 Deloyed by
 * nginx
 * Docker
