@@ -16,15 +16,6 @@ import Grid from "@material-ui/core/Grid"
 import { makeStyles } from '@material-ui/core/styles';
 import yellow from "@material-ui/core/colors/yellow";
 
-
-const Heading = styled(Typography)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    variant: "h1",
-    color: theme.palette.text.secondary
-}));
-
 const useStyles = makeStyles({
     heading: {
         textAlign: "center",
@@ -89,33 +80,6 @@ export default function ShowDialog(props) {
 
 
                     </Grid>
-                    {/* <Grid container>
-                        <Grid item xs={12} sm={12} md={12} lg={12}>
-                            <Typography color="primary">
-                                {props.poster.title}
-                            </Typography>
-                        </Grid>
-
-                        <Grid item xs={12} sm={12} md={12} lg={12}>
-                            <img src={props.poster.images[0].url} width="500" height="auto" />
-                        </Grid>
-                        <Grid item xs={12} sm={12} md={12} lg={12} >
-                            <Typography color="primary" >
-                                Resteruant Name: {props.poster.location}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={12} md={12} lg={12}>
-                            <Typography color="primary" >
-                                Price: {props.poster.price} $
-                            </Typography>
-                        </Grid>
-                        <Grid item>
-                            <Typography color="primary" >
-                                Description: {props.poster.description}
-                            </Typography>
-                        </Grid>
-                    </Grid> */}
-
                 </DialogContent>
             </Dialog>
         </>
