@@ -22,6 +22,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import EditDialog from "./editDialog";
+import ShowDialog from "./showDialog";
 import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
   },
   expandIcon: {
     marginLeft: 'auto',
+  },
+  showDialogIcon: {
+    marginLeft: '0',
   },
   deleteIcon: {
     marginRight: 'auto',
@@ -120,7 +124,6 @@ function DeleteButton(props) {
 }
 
 function ReviewCard(props) {
-
   const [expend, setExpend] = useState(false)
   const handleExpandClick = () => {
     setExpend(!expend);
@@ -157,7 +160,6 @@ function ReviewCard(props) {
               {/* <IconButton className={props.classes.deleteIcon} >
                 <DeleteIcon />
               </IconButton> */}
-
               <EditDialog
                 iconClass={props.classes.editIcon}
                 poster={props.poster}
@@ -170,10 +172,14 @@ function ReviewCard(props) {
           <ExpandMoreIcon />
         </IconButton>
 
+        <ShowDialog
+          iconClass={props.classes.showDialogIcon}
+          poster={props.poster}
+          posterId={props.posterId}
+        />
       </CardActions>
       <Collapse in={expend} timeout="auto" unmountOnExit>
         <CardContent>
-
           <Box sx={{
             fontWeight: 'bold',
             display: 'flex',
@@ -187,8 +193,7 @@ function ReviewCard(props) {
           <Box component="span" style={{ color: 'gray', fontSize: 15 }}>
             $ {props.poster.price}
           </Box>
-
-          <Box sx={{
+          {/* <Box sx={{
             mt: 1.5,
             p: 0.5,
             backgroundColor: "#839b5c",
@@ -200,13 +205,14 @@ function ReviewCard(props) {
           }}
           >
             {props.description}
-          </Box>
+          </Box> */}
         </CardContent>
       </Collapse>
     </Card>
   );
 
 }
+
 
 function ReviewCardGrid() {
   const [posts, setPosts] = useState([])
@@ -221,7 +227,6 @@ function ReviewCardGrid() {
   }, [])
   // console.log(posts);
   const { user, isAuthenticated, isLoading } = useAuth0();
-
 
   return (
     <div>

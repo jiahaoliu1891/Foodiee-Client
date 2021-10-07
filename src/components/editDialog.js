@@ -9,6 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from "@material-ui/core/IconButton";
 
+
 export default function EditDialog(props) {
     const [open, setOpen] = React.useState(false);
     const [images, setImages] = React.useState(null);
@@ -18,7 +19,6 @@ export default function EditDialog(props) {
     const [title, setTitle] = React.useState(props.poster.title);
     const [description, setDescription] = React.useState(props.poster.description);
     const [restaruantName, setRestaruantName] = React.useState(props.poster.location);
-
 
     const priceChangeHandler = (e) => {
         setPrice(e.target.value)
@@ -32,7 +32,6 @@ export default function EditDialog(props) {
     const restaruantNameChangeHandler = (e) => {
         setRestaruantName(e.target.value)
     }
-
     const handleClickOpen = () => {
         setOpen(true);
     };
