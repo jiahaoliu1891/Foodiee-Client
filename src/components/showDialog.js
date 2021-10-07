@@ -14,32 +14,34 @@ import IconButton from "@material-ui/core/IconButton";
 import Paper from "@material-ui/core/Paper"
 import Grid from "@material-ui/core/Grid"
 import { makeStyles } from '@material-ui/core/styles';
+import yellow from "@material-ui/core/colors/yellow";
 
-const useStyles = makeStyles((theme) => ({
-    posterImage: {
-        width: "500",
-        height: "auto"
-    }
-}))
 
 const Heading = styled(Typography)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: "center",
+    variant: "h1",
     color: theme.palette.text.secondary
 }));
+
+const useStyles = makeStyles({
+    heading: {
+        textAlign: "center",
+    }
+});
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary
+    textAlign: "left",
+    backgroundColor: yellow[50],
+    color: theme.palette.text.primary
 }));
 
 export default function ShowDialog(props) {
     const [open, setOpen] = React.useState(false);
-    const styles = useStyles();
-
+    const classes = useStyles();
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -58,21 +60,36 @@ export default function ShowDialog(props) {
                 <DialogContent>
                     <Grid container spacing={2}>
                         <Grid item xs={12} alignItems="center" justifyContent="center">
-                            <Heading> Name </Heading>
+                            <Typography variant="h4" className={classes.heading}> {props.poster.title} </Typography>
                         </Grid>
-                        <Grid item xs={4}>
-                            <Item>xs=4</Item>
-                            <Item>xs=4</Item>
-                            <Item>xs=4</Item>
+
+                        <Grid item xs={12} sm={12} md={12} lg={12} align="center">
+                            <img src={props.poster.images[0].url} width="500" height="auto" />
                         </Grid>
-                        <Grid item xs={4}>
-                            <Item>xs=4</Item>
+
+                        <Grid item xs={6}>
+                            <Typography variant="button" display="block"> Resteruant Name: </Typography>
                         </Grid>
-                        <Grid item xs={8}>
-                            <Item>xs=8</Item>
+                        <Grid item xs={6}>
+                            <Item>{props.poster.location}</Item>
                         </Grid>
+
+                        <Grid item xs={6}>
+                            <Typography variant="button" display="block"> Price: </Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Item>{props.poster.price} $</Item>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <Item>
+                                <Typography variant="body1" > {props.poster.description} </Typography>
+                            </Item>
+                        </Grid>
+
+
                     </Grid>
-                    <Grid container>
+                    {/* <Grid container>
                         <Grid item xs={12} sm={12} md={12} lg={12}>
                             <Typography color="primary">
                                 {props.poster.title}
@@ -97,7 +114,7 @@ export default function ShowDialog(props) {
                                 Description: {props.poster.description}
                             </Typography>
                         </Grid>
-                    </Grid>
+                    </Grid> */}
 
                 </DialogContent>
             </Dialog>
